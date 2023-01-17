@@ -1,0 +1,71 @@
+Write a C++ program to get Nth node in a given Singly Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct  Node
+{   
+    int num;
+    Node *next;
+ }; //node constructed
+
+  int size = 0;
+  void insert(Node** head, int num){
+    Node* new_Node = new Node();
+    new_Node->num = num;
+    new_Node->next = *head;
+    *head = new_Node;    
+     size++;
+}
+
+int get_Nth_Node(Node *head, int value)
+{
+Node *current_Pointer = head;
+int length = 0;
+while (current_Pointer != NULL) {
+        if (length == value)
+            return (current_Pointer->num);
+        length++;
+        current_Pointer = current_Pointer->next;
+}
+    return -1;
+}
+ 
+  //Display all nodes
+  void display_all_nodes(Node* node)
+    { 
+      while(node!=NULL){
+        cout << node->num << " "; 
+        node = node->next; 
+    } 
+}
+
+int main()
+{
+    Node* head = NULL;
+    insert(&head,1);
+    insert(&head,3);
+    insert(&head,5);
+    insert(&head,7);
+    cout << "Original list:\n";
+    display_all_nodes(head); 
+    int pos = 1;
+    cout << "\n\nPosition: " << pos;
+    int result = get_Nth_Node(head, pos-1);
+    cout << "\nValue: " << result;
+    pos = 2;
+    cout << "\n\nPosition: " << pos;
+    result = get_Nth_Node(head, pos-1);
+    cout << "\nValue: " << result;
+    pos = 3;
+    cout << "\n\nPosition: " << pos;
+    result = get_Nth_Node(head, pos-1);
+    cout << "\nValue: " << result;
+    pos = 4;
+    cout << "\n\nPosition: " << pos;
+    result = get_Nth_Node(head, pos-1);
+    cout << "\nValue: " << result;
+    cout<<endl;
+    return 0;
+}
