@@ -1,0 +1,75 @@
+Write a C++ program to find the kth node of a linked list by starting at the middle and moving towards the head.
+
+#include <iostream>
+
+using namespace std;
+
+struct  Node
+{   
+    int num;
+    Node *next;
+ }; //node constructed
+
+  int size = 0;
+  void insert(Node** head, int num){
+    Node* new_Node = new Node();
+    new_Node->num = num;
+    new_Node->next = *head;
+    *head = new_Node;    
+     size++;
+}
+
+int Kth_Node_From_Middle(Node* node, int pos) {
+    if(!node)
+    return -1;
+    Node* ff = node, *ss = node, *mid = NULL;
+    int k = 0;
+    while(ff && ff->next)
+    {
+        k++;
+        ss = ss->next;
+        ff = ff->next->next;
+    }
+    if(pos > k)
+    return -1;
+    mid = ss;
+    ff = node, ss = node;
+    for(int i = 0; i < pos; i++)
+    {
+        ff = ff->next;
+    }
+    while(ff != mid)
+    {
+        ss = ss->next;
+        ff = ff->next;
+    }
+    return ss->num;
+}
+
+  //Display all nodes
+  void display_all_nodes(Node* node)
+    { 
+      while(node!=NULL){
+        cout << node->num << " "; 
+        node = node->next; 
+    } 
+}
+
+int main()
+{
+    Node* head = NULL;
+    insert(&head,1);
+    insert(&head,3);
+    insert(&head,5);
+    insert(&head,7);
+    insert(&head,9);
+    cout << "Original list:\n";
+    display_all_nodes(head); 
+    int pos = 2;
+    cout << "\nkth node of a linked list by starting at \nthe middle and moving towards the head:";
+    cout << "\nPosition = " << pos;
+    int result = Kth_Node_From_Middle(head, pos);
+    cout << "\nValue = " << result;
+    cout<<endl;
+    return 0;
+}
