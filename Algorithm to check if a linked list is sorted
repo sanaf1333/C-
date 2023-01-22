@@ -1,0 +1,32 @@
+/* Linked list node */
+struct Node 
+{ 
+    // integer data
+    int data;
+    // self-referential structure to link multiple nodes
+    struct Node* next; 
+}; 
+
+
+bool isSorted(struct Node *head) 
+{  
+    if (head == NULL) 
+        return true; 
+    
+    for (Node *t=head; t->next != NULL; t=t->next) 
+       if (t->data > t->next->data) 
+            return false; 
+            
+    return true; 
+} 
+
+
+bool isSorted(struct Node *head) 
+{  
+    // Base case 
+    if (head == NULL || head->next == NULL) 
+        return true; 
+      
+    // Check first two nodes and recursively call for next node.
+    return ((head->data > head->next->data) && isSorted(head->next)); 
+}
