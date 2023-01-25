@@ -1,0 +1,29 @@
+Write a C++ program to capitalize the first character of each element of a given string vector. Return the new vector.
+
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+std::vector<std::string> test(std::vector<std::string> colors) {
+  for(int i=0;i<colors.size();i++){
+    colors[0][0]=toupper(colors[0][0]);
+    colors[i][0]=toupper(colors[i][0]);
+    for(int l=1;l<colors[i].size();l++){
+      colors[i][l] = tolower(colors[i][l]);
+    }
+  }
+  return colors;
+ }
+int main(){
+	vector<string> colors = {"red", "green", "black", "white", "Pink"};
+    cout << "Original Vector elements:\n";
+	for (string c : colors)
+        cout << c << " ";
+   vector<string> result = test(colors);
+    cout << "\n\nCapitalize the first character of each vector element:\n";   
+        for (string c : result)
+        cout << c << " ";
+}
+
+
