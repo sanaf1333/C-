@@ -1,0 +1,30 @@
+Write a C++ program that takes a vector of strings and returns only those strings that contain a number(s). Return empty vector if none
+
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+std::vector<std::string> test(std::vector<std::string> colors) {
+  std::vector<std::string> result;
+  for(auto& text : colors){
+    auto it = std::find_if(text.begin(), text.end(), [](char c){return std::isdigit(c);});
+    if(it!=text.end()){
+      result.push_back(text);
+    }
+  }
+  return result;
+}
+
+int main(){
+	vector<string> colors = {"red", "green23", "1black", "white"};
+	//vector<string> colors = {"red", "green", "black", "white"};
+    cout << "Original Vector elements:\n";
+	for (string c : colors)
+        cout << c << " ";
+    vector<string> result = test(colors);
+    cout << "\n\nFind strings that contain a number(s) from the said vector:\n";   
+        for (string c : result)
+        cout << c << " ";
+}
