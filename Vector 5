@@ -1,0 +1,24 @@
+Write a C++ program to verify that all of the letters in the second string appear in the first string as well. Return true otherwise false
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+string test(vector<string> strs) {
+	for (auto ch: strs.at(1))
+		if (strs.at(0).find(toupper(ch)) == string::npos && strs.at(0).find(tolower(ch)) == string::npos)
+			return "false";
+	return "true";
+}
+int main(){
+	vector<string> strs = {"Python", "Py"};
+	//vector<string> strs = {"CPP", "C++"};
+    cout << "Original String elements: ";
+	for (string c : strs)
+        cout << c << " ";
+   cout << "\nCheck - First string contains all letters from second string: ";    
+   string result = test(strs);   
+   cout << result << " ";
+} 
+
