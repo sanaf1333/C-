@@ -1,0 +1,39 @@
+Write a C++ program to create a new list from a given list of strings where each element is replaced by 3 copies of the string concatenated together.
+
+
+#include <bits/stdc++.h>
+#include <list>
+
+using namespace std;
+
+list<string> test(list<string> nums) {
+	       list<string> new_list;
+	       list<string>::iterator it;
+           for (it = nums.begin(); it != nums.end(); ++it)
+            {
+                new_list.push_back(*it + *it + *it);                
+            }
+
+            return new_list;
+}
+
+display_list(list<string> g)
+{
+    list<string>::iterator it;
+    for (it = g.begin(); it != g.end(); ++it)
+        cout << *it << ' ';
+    cout << '\n';
+}
+
+int main() {
+
+  list<string> text = { "1", "2", "3" , "4", "5", "6" };
+  cout << "Original list of elements:\n";
+  display_list(text);
+  list<string> result_list;
+  result_list = test(text);
+  cout << "\nNew list from the said list where each element is replaced\nby 3 copies of the string concatenated together:\n";
+  display_list(result_list);
+  return 0;
+}
+
