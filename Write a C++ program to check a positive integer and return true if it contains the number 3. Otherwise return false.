@@ -1,0 +1,35 @@
+Write a C++ program to check a positive integer and return true if it contains the number 3. Otherwise return false. 
+Test Data:
+(143) -> 1
+(678) -> 0
+(963) -> 1
+
+
+#include <iostream>
+
+using namespace std;
+
+bool test(int n)
+     {
+      while (n > 0)
+          {
+             if (n % 10 == 3) return true;
+                n /= 10;
+          }
+    return false;
+   }
+
+int main() {
+
+  int n = 143;
+  cout << "Original number: " << n;
+  cout << "\nCheck the said integer contains 3? " << test(n);
+  n = 678;
+  cout << "\n\nOriginal number: " << n;
+  cout << "\nCheck the said integer contains 3? " << test(n);
+  n = 963;
+  cout << "\n\nOriginal number: " << n;
+  cout << "\nCheck the said integer contains 3? " << test(n);
+  return 0;
+}
+
