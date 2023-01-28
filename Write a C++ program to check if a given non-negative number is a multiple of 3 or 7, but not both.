@@ -1,0 +1,19 @@
+Write a C++ program to check if a given non-negative number is a multiple of 3 or 7, but not both.
+
+#include <iostream>
+ 
+using namespace std;
+
+bool test(int n)
+        {
+            return n % 3 == 0 ^ n % 7 == 0;
+        }
+     
+        
+int main() 
+ {
+  cout << test(3) << endl; 
+  cout << test(7) << endl; 
+  cout << test(21) << endl;         
+  return 0;      
+}
