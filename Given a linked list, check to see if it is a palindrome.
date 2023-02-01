@@ -1,0 +1,82 @@
+Given a linked list, check to see if it is a palindrome.
+
+
+// C++ program to check if linked list is a palindrome
+#include <bits/stdc++.h>
+using namespace std;
+
+// structure of linked list
+struct Node
+{
+	char data;
+	Node *next;
+};
+
+// Function to check if linked list is palindrome
+bool isPalindrome(Node *head)
+{
+	// if list is empty or has only one element
+	if (head == NULL || head->next == NULL)
+		return true;
+
+	// find middle of the list
+	Node *slow = head, *fast = head;
+	while (fast && fast->next)
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+
+	// slower pointer will be pointing to middle node
+	Node *head2 = slow->next;	
+	slow->next = NULL;
+
+	// reverse second half of the linked list
+	Node *prev = NULL;
+	while (head2)
+	{
+		Node *next = head2->next;
+		head2->next = prev;
+		prev = head2;
+		head2 = next;
+	}
+
+	// compare first half and second half of list
+	head2 = prev;
+	while (head && head2)
+	{
+		if (head->data != head2->data)
+			return false;
+
+		head = head->next;
+		head2 = head2->next;
+	}
+
+	return true;
+}
+
+// Function to add a node at the beginning of Linked List
+void push(Node **head, char data)
+{
+	Node *node = new Node;
+	node->data = data;
+	node->next = *head;
+	*head = node;
+}
+
+// Driver program
+int main()
+{
+	Node *head = NULL;
+	string str = "madam";
+
+	for (int i = 0; i < str.length(); i++)
+		push(&head, str[i]);
+
+	if (isPalindrome(head))
+		cout << "Linked List is Palindrome";
+	else
+		cout << "Linked List is not Palindrome";
+
+	return 0;
+}
