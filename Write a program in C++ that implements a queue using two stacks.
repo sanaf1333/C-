@@ -1,0 +1,54 @@
+Write a program in C++ that implements a queue using two stacks.
+
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+class MyQueue
+{
+    stack<int> stack1;
+    stack<int> stack2;
+
+public:
+    void enqueue(int x);
+    int dequeue();
+};
+
+void MyQueue::enqueue(int x)
+{
+    stack1.push(x);
+}
+
+int MyQueue::dequeue()
+{
+    if (stack2.empty())
+    {
+        while (!stack1.empty())
+        {
+            int x = stack1.top();
+            stack1.pop();
+            stack2.push(x);
+        }
+    }
+    int x = stack2.top();
+    stack2.pop();
+    return x;
+}
+
+int main()
+{
+    MyQueue q;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    cout << q.dequeue() << endl;
+    cout << q.dequeue() << endl;
+    q.enqueue(5);
+    cout << q.dequeue() << endl;
+    cout << q.dequeue() << endl;
+    cout << q.dequeue() << endl;
+    return 0;
+}
