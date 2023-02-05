@@ -1,0 +1,49 @@
+Write a C++ program to find all combinations of well-formed brackets from a given paris of parentheses.
+
+#include <iostream>
+
+#include<algorithm>
+ 
+using namespace std;
+vector<string> result;
+void Parenthesis(int start_bracket, int close_bracket, string curr, int n)
+{
+    if(curr.size()==2*n)
+    {
+        result.push_back(curr);
+        return;
+    }
+    if(start_bracket<n)
+    {
+        Parenthesis(start_bracket+1,close_bracket,curr+"[",n);
+    }
+    if(close_bracket<start_bracket)
+    {
+        Parenthesis(start_bracket,close_bracket+1,curr+"]",n);
+    }
+}
+vector<string> generate_Parenthesis(int n) 
+{
+    Parenthesis(0, 0 ,"", n);
+    return result;
+} 
+int main()
+{
+   int n;
+   vector<string> result_Parenthesis;
+   n = 2; 
+   cout << "n = " << n << "\n"; 
+   result_Parenthesis = generate_Parenthesis(n);   
+   for (int i = 0; i < result_Parenthesis.size(); i++) {
+        std::cout << result_Parenthesis.at(i) << ' ';
+     }
+   n = 3;
+   cout << "\n\nn = " << n << "\n"; 
+   result_Parenthesis = generate_Parenthesis(n);   
+   for (int i = 0; i < result_Parenthesis.size(); i++) {
+        std::cout << result_Parenthesis.at(i) << ' ';
+     } 
+   return 0;
+}
+
+
