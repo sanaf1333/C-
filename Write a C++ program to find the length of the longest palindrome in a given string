@@ -1,0 +1,48 @@
+Write a C++ program to find the length of the longest palindrome in a given string
+
+
+#include <iostream>
+
+#include<algorithm>
+#include <unordered_map>
+
+using namespace std;
+ 
+int longest_Palindrome_length(string str1) {
+        unordered_map< char,int >map_data;
+        int length = 0, flag = 1;
+        for(char x: str1)map_data[x]++;
+        for(auto i : map_data){
+            if(i.second % 2 == 0){
+                length += i.second;
+            }
+            else{
+                length += i.second-1;
+                flag = 0;
+            }
+        }
+        if(flag == 0){
+            length = length + 1;
+        }
+        return length;
+    }
+
+int main()
+{
+  char str1[] = "adcdcdy";
+  cout << "Original string: " << str1;
+  cout << "\nLength of the longest palindrome of the said string: " << longest_Palindrome_length(str1);
+  char str2[] = "aaa";
+  cout << "\n\nOriginal string: " << str2;
+  cout << "\nLength of the longest palindrome of the said string: " << longest_Palindrome_length(str2);
+  char str3[] = "aa";
+  cout << "\n\nOriginal string: " << str3;
+  cout << "\nLength of the longest palindrome of the said string: " << longest_Palindrome_length(str3);
+  char str4[] = "abddddeeff";
+  cout << "\n\nOriginal string: " << str4;
+  cout << "\nLength of the longest palindrome of the said string: " << longest_Palindrome_length(str4);
+  char str5[] = "PYTHON";
+  cout << "\n\nOriginal string: " << str5;
+  cout << "\nLength of the longest palindrome of the said string: " << longest_Palindrome_length(str5);
+  return 0;    
+}
