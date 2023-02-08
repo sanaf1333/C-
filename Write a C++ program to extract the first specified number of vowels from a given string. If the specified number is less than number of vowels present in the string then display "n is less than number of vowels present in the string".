@@ -1,0 +1,33 @@
+Write a C++ program to extract the first specified number of vowels from a given string. If the specified number is less than number of vowels present in the string then display "n is less than number of vowels present in the string".
+
+
+#include <bits/stdc++.h>
+
+
+using namespace std;
+
+std::string test(std::string text, int n) {
+	std::string b;
+  int k=0;
+  for (int i=0; i<text.size() && k<n; i++)
+  {
+	if (text[i]=='a' || text[i]=='e'|| text[i]=='i'|| text[i]=='o'|| text[i]=='u')
+	{k++;
+	b.push_back(text[i]);}
+  }
+  if (k<n)
+  {
+     return ("n is less than number of vowels present in the string!");}
+	else return b;
+}
+
+int main() {
+string text;
+int n;
+cout << "Input a string: ";
+getline(cin, text);
+cout << "Input a number: ";
+cin >> n;
+   cout << "\nExtract the first n number of vowels from the said string:\n";
+   cout << test(text, n) << endl;
+}
