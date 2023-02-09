@@ -1,0 +1,32 @@
+Write a C++ program that removes a specific word from a given string. Return the new string. 
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+string test(std::string s, std::string w)
+{
+       while (s.find(w) != string::npos)
+        s.replace(s.find(w), w.length(), "");
+        return s;
+}
+int main()
+{
+	string text = "Exercises Practice Solution";
+	string word ="Solution";
+	cout << "String: " << text;
+	cout << "\nWord to remove: " << word;
+	cout << "\nNew string, after removing the said word:\n";
+	cout << test(text, word) << endl;
+    word ="Practice";
+	cout << "\nString: " << text;
+	cout << "\nWord to remove: " << word;
+	cout << "\nNew string, after removing the said word:\n";
+	cout << test(text, word) << endl;
+	word ="Exercises";
+	cout << "\nString: " << text;
+	cout << "\nWord to remove: " << word;
+	cout << "\nNew string, after removing the said word:\n";
+	cout << test(text, word) << endl; 	  	 
+}
