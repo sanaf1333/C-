@@ -1,0 +1,34 @@
+Write a C++ program to calculate x raised to the power n (xn).
+
+
+#include <iostream>
+using namespace std;
+
+double powxn(double x, int n) {
+        if (n < 0){
+            x = 1 / x;
+            n = -n;
+        }
+         
+        double result = 1;
+        for (auto i = 0; i < n; ++i)
+        {
+            result = result * x;
+        }
+
+        return result;
+    }
+
+int main(void)
+{
+    double x = 7.0;
+    int n = 2;
+    cout << "\n" << x << "^" << n << " = " << powxn(x, n) << endl; 
+    x = 3;
+    n = 9;
+    cout << "\n" << x << "^" << n << " = " << powxn(x, n) << endl;     
+    x = 6.2;
+    n = 3;
+    cout << "\n" << x << "^" << n << " = " << powxn(x, n) << endl;         
+    return 0;
+}
