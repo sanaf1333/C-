@@ -1,0 +1,24 @@
+Write a C++ program to get the Excel column title that corresponds to a given column number (integer value). 
+
+
+#include <iostream>
+using namespace std;
+
+    string convert_num_to_Excel_Title(int num) {
+        if (num == 0) {
+            return "";
+        }
+        return convert_num_to_Excel_Title((num - 1) / 26) + static_cast<char>((num - 1) % 26 + 'A');
+    }
+
+
+int main(void)
+{
+    int n = 2;
+    cout << "\nColumn Number n =  " << n << " Excel column title = " << convert_num_to_Excel_Title(n) << endl; 
+    n = 29;
+    cout << "\nColumn Number n =  " << n << " Excel column title = " << convert_num_to_Excel_Title(n) << endl; 
+    n = 153;
+    cout << "\nColumn Number n =  " << n << " Excel column title = " << convert_num_to_Excel_Title(n) << endl; 
+    return 0;
+}
