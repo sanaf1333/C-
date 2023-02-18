@@ -1,0 +1,55 @@
+In algebra, a decimal number can be defined as a number whose whole number part and the fractional part is separated by a decimal point. Write a C++ program to check if a given string is a decimal number or not.
+
+
+#include <iostream>
+
+using namespace std;
+
+bool isNumber(string str_num) {
+    int i=0;
+    int str_len = str_num.size();
+    while (i<str_len && str_num[i]==' ')
+        i++;
+    if (i<str_len && (str_num[i]=='+' || str_num[i]=='-'))
+        i++;
+    int digits=0, dots=0;
+    while (i<str_len && ((str_num[i]>='0' && str_num[i]<='9')||(str_num[i]=='.'))) {
+        if (str_num[i]>='0' && str_num[i]<='9')
+            digits++;
+        else if (str_num[i] == '.')
+            dots++;
+        i++;
+    }
+    if (digits == 0 || dots>1)
+        return false;
+    if (i<str_len && str_num[i]=='e') {
+        if (++i<str_len && (str_num[i]=='+' || str_num[i]=='-'))
+            i++;
+        if (i==str_len || (str_num[i]<'0' || str_num[i]>'9'))
+            return false;
+        while (i<str_len && (str_num[i]>='0' && str_num[i]<='9'))
+            i++;
+    }
+    while (i<str_len && str_num[i]==' ')  //optional trailing spaces
+        i++;
+    return (i==str_len); //if at end of string then success
+}
+int main() {
+    string s = "0";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    
+    s = "abc 123";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    
+    s = "abc";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s);
+    s = "0.12";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    
+    s = "123.33";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    
+    s = "76.4e93";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    	    
+    s = "+123";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    	    
+    s = "+-33";
+    cout << "\n Is " << s << " a  decimal number? " << isNumber(s) << endl;	    	    
+    return 0;
+}
