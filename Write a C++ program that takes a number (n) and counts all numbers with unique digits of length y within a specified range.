@@ -1,0 +1,27 @@
+Write a C++ program that takes a number (n) and counts all numbers with unique digits of length y within a specified range. 
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int count_Unique_Digits_numbers(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        int ctr = 10;
+        for (int k = 2, fk = 9; k <= n; ++k) { 
+            fk *= 10 - (k - 1);
+            ctr += fk;
+        }
+        return ctr;  
+    }
+int main() 
+{
+    int n = 1;
+    cout << "\nn = " << n << ", Number of unique digits: " << count_Unique_Digits_numbers(n) << endl;   
+    n = 2;  
+    cout << "\nn = " << n << ", Number of unique digits: " << count_Unique_Digits_numbers(n) << endl;       
+	return 0;    
+}
