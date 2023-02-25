@@ -1,0 +1,32 @@
+Write a C++ program to break a given integer in at least two parts (positive integers) to maximize the product of those integers
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int integer_Break(int n) {
+            if (n == 2) {
+                return 1;
+            } else if (n == 3) {
+                return 2;
+            } else if (n % 3 == 0) {
+                return (int) pow(3, n / 3);
+            } else if (n % 3 == 1) {
+                return 2 * 2 * (int) pow(3, (n - 4) / 3);
+            } else {
+                return 2 * (int) pow(3, n / 3);
+            }
+        }
+
+int main() 
+{
+    int n = 5;  // (3 + 2) -> 3 x 2 = 6
+    cout << "\nAfter breaking in +ve integers maximumn product from " << n << " = " << integer_Break(n) << endl;
+    n = 12;  // (3 + 3 + 3 + 3) -> 3 x 3 x 3 x 3 = 81
+    cout << "\nAfter breaking in +ve integers maximumn product from " << n << " = " << integer_Break(n) << endl;
+    n = 17; // (3 + 3 + 3 + 3 + 3 + 2) -> 3 x 3 x 3 x 3 x 3 x 2 = 486
+    cout << "\nAfter breaking in +ve integers maximumn product from " << n << " = " << integer_Break(n) << endl;    
+	return 0;    
+}
