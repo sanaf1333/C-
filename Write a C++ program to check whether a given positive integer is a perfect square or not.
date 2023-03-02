@@ -1,0 +1,44 @@
+Write a C++ program to check whether a given positive integer is a perfect square or not.
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+bool is_Perfect_Square(int num) {
+        long long start_num = 0;
+        long long end_num = num;
+        
+        while(start_num + 1 < end_num)
+        {
+            long long mid_num = start_num + (end_num - start_num) / 2;
+            if (mid_num * mid_num < num)
+            {
+                start_num = mid_num;
+            }
+            else if(mid_num * mid_num > num)
+            {
+                end_num = mid_num;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        
+        return start_num * start_num == num || end_num * end_num == num;
+    }
+    
+int main() 
+{
+    int n = 1;
+    cout << "\nIs "<< n << " is perfect number? " << is_Perfect_Square(n) << endl;   
+    n = 13;
+    cout << "\nIs "<< n << " is perfect number? " << is_Perfect_Square(n) << endl; 
+    n = 16;
+    cout << "\nIs "<< n << " is perfect number? " << is_Perfect_Square(n) << endl; 
+    n = 125;
+    cout << "\nIs "<< n << " is perfect number? " << is_Perfect_Square(n) << endl;    
+	return 0;    
+}
