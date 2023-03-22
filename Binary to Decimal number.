@@ -1,0 +1,21 @@
+Binary to Decimal number.
+
+
+#include<iostream.h> 
+using namespace std;
+int convertBinaryToDecimal(int n)
+{
+    int decimalNumber = 0, i = 0, dig;
+    while (n!=0)
+    {
+        dig = n%10;
+        n /= 10;
+        decimalNumber += dig*pow(2,i);
+        ++i;
+    }
+    return decimalNumber;
+}
+int main() {
+int n = 10111;
+cout<< convertBinaryToDecimal(n);
+}
