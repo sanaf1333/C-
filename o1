@@ -1,0 +1,33 @@
+
+int main()
+{
+   FILE *fp;
+   int k;
+   char ch;
+   fp = fopen ("file.txt","w");
+   if(fp == NULL)
+   {
+      printf("Error opening file.\n");
+      return1;
+   }
+   else
+   {
+      for(k =2; k <20; k+=2)
+      fprintf (fp,"%3d", k);
+      fclose (fp);
+      fp = fopen ("file.txt","r");
+      while((ch = fgetc(fp))!= EOF)
+      {
+         if(ch ==' ')
+         fputc ('*', stdout);
+         elseif(ch !='1')
+         fputc (ch, stdout);
+         else
+         {
+            putchar ('\n');
+            putchar (ch);
+         }
+      }
+   }
+return0;
+}
